@@ -1,10 +1,10 @@
 <div align="center">
 
-<img src="docs/social-preview.png" alt="AAKAAR आकार. From baat to banaawat. A finding where the customer said walnut finish and the maker quoted walnut-colour laminate." width="860">
+<img src="docs/social-preview.png" alt="AAKAAR आकार. From baat to banaawat. A finding where the customer said walnut finish and the maker quoted walnut colour laminate." width="860">
 
 # AAKAAR · आकार
 
-**From baat to banaawat.** A voice-native work folio for custom jobs.
+**From baat to banaawat.** A voice native work folio for custom jobs.
 
 *Dono haan bol rahe the. Par dono ki samajh alag thi.*
 Both said yes. They were picturing different things.
@@ -20,7 +20,7 @@ Both said yes. They were picturing different things.
 
 ---
 
-AAKAAR helps a customer and a maker (carpenter, tailor, mason, upholsterer) find out **before the work starts** that they are not talking about the same thing. It lines up the quotes, listens to both sides, points at the words that may mean different things, asks the one question that would settle it, writes the plan down in a form both people can confirm, and later sets what was reported as delivered beside what was agreed.
+AAKAAR helps a customer and a maker (carpenter, tailor, mason, upholsterer) find out **before the work starts** that they are not talking about the same thing. It lines up the quotes, listens to both sides, points at the words that may mean different things, asks the one question that would settle it, writes the plan down in a form both people can confirm and later sets what was reported as delivered beside what was agreed.
 
 It does not decide who is right. It does not pick the cheapest quote. It does not claim a plan is agreed when only one person pressed a button. Every claim on screen says where it came from.
 
@@ -263,9 +263,7 @@ npx tsc --noEmit
 npm run build
 ```
 
-As of 8 November 2026: **193 tests pass, 7 are skipped, 11 suites** (10 run, 1 skipped), lint and type-check are clean, and the production build succeeds. The skipped 7 are the live-model cases below.
-
-The tests cover, with synthetic data only:
+The tests covers:
 - **A. A true difference** (veneer vs walnut-look laminate) is flagged.
 - **B. No difference** (both say laminate) is not flagged.
 - **C. Ambiguity** (both say "walnut finish") is reported as ambiguity, not as a proven mismatch.
@@ -312,9 +310,9 @@ See [`docs/BAAT_KA_FARQ_EVALUATION.md`](docs/BAAT_KA_FARQ_EVALUATION.md) for the
 
 ## Design
 
-The look is called **the contemporary Indian work folio**: a bahi-khata ledger page for structure, block-print registration marks on the finding, an Ajrakh-style diamond rule, the open space of a jali, a hand-painted signboard face for a few headings, and measurement ticks on the FARQ row. Paper `#F4F0E7`, ink `#252D35`, indigo `#475A78`, madder `#AE4C3B`, ochre `#AC8442`, green `#58735D`. No decorative shadows, glows, gradients or card grids. Colour never carries meaning alone. These are influences, not claims of authenticity; no pattern is copied from a specific textile.
+The look is called **the contemporary Indian work folio**: a bahi-khata ledger page for structure, block-print registration marks on the finding, an Ajrakh style diamond rule, the open space of a jali, a hand painted signboard face for a few headings and measurement ticks on the FARQ row. Paper `#F4F0E7`, ink `#252D35`, indigo `#475A78`, madder `#AE4C3B`, ochre `#AC8442`, green `#58735D`. No decorative shadows, glows, gradients or card grids. Colour never carries meaning alone. These are influences not claims of authenticity. No pattern is copied from a specific textile.
 
-Typefaces: **Mukta** (Devanagari and Latin, all interface text), **Yatra One** (signboard moments), **IBM Plex Mono** (numbers, ids, dates). All three are open-licensed fonts from Fontsource packages.
+Typefaces: **Mukta** (Devanagari and Latin, all interface text), **Yatra One** (signboard moments), **IBM Plex Mono** (numbers, ids, dates). All three are open licensed fonts from Fontsource packages.
 
 ## Credits
 
