@@ -1,0 +1,312 @@
+/* Fonts are self-hosted (see app/layout.tsx), so opening AAKAAR makes no request to a font CDN.
+   Mukta: one family designed for Devanagari and Latin together (all interface text).
+   Yatra One: painted-signboard lettering, a few display moments only.
+   IBM Plex Mono: job numbers, amounts, units, dates, version codes. */
+@import "tailwindcss";
+
+@theme {
+  /* The AAKAAR folio palette. Pigments of block print and bahi-khata paper:
+     paper, indigo, madder, ochre, a botanical green. The older token names below
+     (canvas, sindoor, haldi, neem) now point at these, so every screen moves together.
+     Contrast on paper/surface, measured: ink 12.3, indigo 6.2, madder 4.7, green 4.6.
+     Two values differ from the first reference on purpose, to keep small text readable:
+     --color-muted is #6a6a64 (reference #73736d reaches only 4.2:1 on paper), and ochre is
+     used only for rules and fills, with --color-ochre-text for any ochre-coloured words. */
+  --color-paper: #f4f0e7;
+  --color-surface: #fbf9f3;
+  --color-ink: #252d35;
+  --color-muted: #6a6a64;
+  --color-line: #d6cec1;
+
+  --color-indigo: #475a78;
+  --color-indigo-light: #5d7291;
+  --color-indigo-deep: #36465f;
+
+  --color-madder: #ae4c3b;
+  --color-madder-light: #c46a58;
+
+  --color-ochre: #ac8442;
+  --color-ochre-light: #c4a064;
+  --color-ochre-text: #7f6128;
+
+  --color-botanical: #58735d;
+  --color-botanical-light: #78927d;
+
+  /* Older names, kept so no component breaks */
+  --color-canvas: var(--color-paper);
+  --color-sindoor: var(--color-madder);
+  --color-sindoor-light: var(--color-madder-light);
+  --color-haldi: var(--color-ochre);
+  --color-haldi-light: var(--color-ochre-light);
+  --color-neem: var(--color-botanical);
+  --color-neem-light: var(--color-botanical-light);
+
+  /* Typography */
+  --font-sans: "Mukta", system-ui, sans-serif;
+  --font-devanagari: "Mukta", system-ui, sans-serif;
+  /* Hand-painted signboard lettering: the wordmark and a few display moments (page titles),
+     never body or interface text */
+  --font-signboard: "Yatra One", "Mukta", system-ui, sans-serif;
+  /* Mono: measurements, job numbers, timestamps, revision codes, prices */
+  --font-mono: "IBM Plex Mono", ui-monospace, "Cascadia Code", Consolas, monospace;
+}
+
+@layer base {
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html {
+    font-family: var(--font-sans);
+    background-color: var(--color-canvas);
+    color: var(--color-ink);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    text-size-adjust: 100%;
+  }
+
+  body { min-height: 100dvh; background-color: var(--color-canvas); }
+
+  /* Visible keyboard focus everywhere */
+  :focus-visible {
+    outline: 2px solid var(--color-indigo);
+    outline-offset: 2px;
+  }
+
+  button, a, [role="button"] { cursor: pointer; }
+  button:disabled { cursor: not-allowed; }
+}
+
+/* ── Flat canvas (the old noise texture is gone) ─────────────── */
+.paper-bg { background-color: var(--color-canvas); }
+
+/* ── Devanagari: room for matras above and below ─────────────── */
+.font-devanagari { font-family: var(--font-devanagari); line-height: 1.7; }
+
+/* ── Brand moment: the wordmark, set like a painted shop sign ─── */
+.wordmark-hi { font-family: var(--font-signboard); font-size: 1.75rem; line-height: 1.5; color: var(--color-indigo); }
+/* The same lettering for a few display moments: a page title, the BAAT KA FARQ heading. One per screen. */
+.display-sign { font-family: var(--font-signboard); font-weight: 400; letter-spacing: 0.01em; line-height: 1.25; }
+
+/* ── Textile geometry, used sparingly ────────────────────────────
+   .rule-jaal   a thin chain-of-diamonds band, in the manner of Ajrakh and Bagh block
+                printing: it marks the top edge of a register page (home, job).
+   .jali        a pierced-screen lattice that frames an empty state.
+   Both are decorative only (aria-hidden), static, and drawn in the palette tokens. */
+.rule-jaal {
+  height: 12px;
+  border-top: 1px solid var(--color-line);
+  border-bottom: 1px solid var(--color-line);
+  background-color: var(--color-canvas);
+  background-repeat: repeat-x;
+  background-size: 24px 12px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='12' viewBox='0 0 24 12'%3E%3Cpath d='M0 6 L12 0.8 L24 6 L12 11.2 Z' fill='none' stroke='%23475a78' stroke-opacity='0.55' stroke-width='1'/%3E%3Cpath d='M12 3.6 L16 6 L12 8.4 L8 6 Z' fill='%23ae4c3b' fill-opacity='0.75'/%3E%3C/svg%3E");
+}
+.jali {
+  width: 10rem;
+  min-height: 7rem;
+  background-size: 28px 28px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 28 28'%3E%3Crect x='6' y='6' width='16' height='16' fill='none' stroke='%23475a78' stroke-opacity='0.4' stroke-width='1'/%3E%3Crect x='6' y='6' width='16' height='16' fill='none' stroke='%23475a78' stroke-opacity='0.4' stroke-width='1' transform='rotate(45 14 14)'/%3E%3Ccircle cx='14' cy='14' r='1.4' fill='%23ae4c3b' fill-opacity='0.7'/%3E%3C/svg%3E");
+  /* fades in from the card's right edge so it reads as a screen, not a box */
+  -webkit-mask-image: linear-gradient(to left, #000 25%, transparent 100%);
+  mask-image: linear-gradient(to left, #000 25%, transparent 100%);
+}
+
+/* ── Mono for technical values ───────────────────────────────── */
+.font-mono { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+.tabular-nums { font-variant-numeric: tabular-nums; }
+
+/* ── Type scale: display / title / section / body / support / meta ── */
+.t-display { font-size: clamp(2rem, 4.2vw, 3rem); line-height: 1.12; font-weight: 700; letter-spacing: -0.01em; }
+.t-title   { font-size: 1.5rem;  line-height: 1.3;  font-weight: 700; }
+.t-section { font-size: 1.05rem; line-height: 1.4;  font-weight: 700; }
+.t-body    { font-size: 0.95rem; line-height: 1.6; }
+.t-support { font-size: 0.875rem; line-height: 1.55; color: var(--color-muted); }
+.t-meta    { font-size: 0.8rem;  line-height: 1.4;  color: var(--color-muted); }
+.t-label   { font-size: 0.8rem;  line-height: 1.3;  font-weight: 600; color: var(--color-muted); letter-spacing: 0.02em; }
+
+/* ── Work record geometry: square, ruled, flat ───────────────── */
+.sheet {
+  background: var(--color-surface);
+  border: 1px solid var(--color-line);
+  border-radius: 2px;
+}
+.rule-b { border-bottom: 1px solid var(--color-line); }
+.rule-t { border-top: 1px solid var(--color-line); }
+.register-row { border-bottom: 1px solid var(--color-line); }
+
+/* Hanging entry number, like a register line number */
+.entry-no {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Evidence block: quoted source text, set in from the left rule */
+.evidence {
+  border-left: 3px solid var(--color-line);
+  padding: 0.35rem 0 0.35rem 0.85rem;
+}
+.evidence-customer { border-left-color: var(--color-indigo); }
+.evidence-maker    { border-left-color: var(--color-neem); }
+
+/* ── Status chips: always text plus a shape, never colour alone ─── */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.1rem 0.5rem;
+  border: 1px solid currentColor;
+  border-radius: 2px;
+  font-size: 0.78rem;
+  line-height: 1.5;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.chip-confirmed { color: var(--color-neem);    background: color-mix(in srgb, var(--color-neem) 10%, var(--color-surface)); }
+.chip-decision  { color: var(--color-sindoor); background: color-mix(in srgb, var(--color-sindoor) 8%, var(--color-surface)); }
+.chip-proposed  { color: var(--color-indigo);  background: color-mix(in srgb, var(--color-indigo) 8%, var(--color-surface)); }
+.chip-revised   { color: var(--color-ochre-text); background: color-mix(in srgb, var(--color-ochre) 14%, var(--color-surface)); }
+.chip-unclear   { color: var(--color-muted);   background: var(--color-surface); }
+
+/* Legacy class names still used in places */
+.badge-confirmed { color: var(--color-neem); }
+.badge-mismatch  { color: var(--color-sindoor); }
+.badge-proposed  { color: var(--color-indigo); }
+.badge-unclear   { color: var(--color-muted); }
+.badge-changed   { color: var(--color-ochre-text); }
+
+/* ── Controls: the only place with stronger rounding ─────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  min-height: 2.5rem;
+  padding: 0.45rem 1rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  line-height: 1.2;
+  border: 1px solid transparent;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+.btn-primary { background: var(--color-indigo); color: #fff; }
+.btn-primary:hover:not(:disabled) { background: var(--color-indigo-light); }
+.btn-primary:disabled { background: color-mix(in srgb, var(--color-indigo) 45%, var(--color-canvas)); }
+.btn-quiet { background: var(--color-surface); border-color: var(--color-line); color: var(--color-ink); }
+.btn-quiet:hover:not(:disabled) { border-color: var(--color-indigo); color: var(--color-indigo); }
+.btn-confirm { background: var(--color-neem); color: #fff; }
+.btn-confirm:hover:not(:disabled) { background: color-mix(in srgb, var(--color-neem) 85%, #000); }
+.btn-confirm:disabled { background: color-mix(in srgb, var(--color-neem) 45%, var(--color-canvas)); }
+.btn-text { min-height: 2rem; padding: 0.2rem 0.5rem; background: transparent; color: var(--color-indigo); }
+.btn-text:hover:not(:disabled) { text-decoration: underline; }
+.btn-text-danger { color: var(--color-sindoor); }
+
+.field {
+  width: 100%;
+  min-height: 2.6rem;
+  padding: 0.5rem 0.75rem;
+  background: var(--color-surface);
+  border: 1px solid var(--color-line);
+  border-radius: 6px;
+  font-size: 0.95rem;
+  color: var(--color-ink);
+}
+.field::placeholder { color: color-mix(in srgb, var(--color-muted) 80%, var(--color-surface)); }
+.field:hover { border-color: color-mix(in srgb, var(--color-indigo) 50%, var(--color-line)); }
+textarea.field { line-height: 1.55; resize: vertical; }
+
+/* ── The folio: structure borrowed from a bahi-khata ──────────────
+   .folio-margin   the double red margin rule down the left of a ledger page
+   .folio-head     a column-header row, ruled below like a ledger heading
+   .reg-marks      block-print registration ticks at the corners of a printed block;
+                   used on a BAAT KA FARQ finding and nowhere else, so it stays a signature
+   .ticks          a measurement scale, the way a tailor's tape or a carpenter's rule is marked
+   .hang           a hanging label column: label to the left, content to the right */
+.folio-margin {
+  border-left: 3px double color-mix(in srgb, var(--color-madder) 70%, var(--color-surface));
+}
+.folio-head {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  border-bottom: 1px solid var(--color-ink);
+}
+.reg-marks { position: relative; }
+.reg-marks::before,
+.reg-marks::after {
+  content: "";
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  pointer-events: none;
+  border-color: var(--color-madder);
+  border-style: solid;
+  border-width: 0;
+}
+.reg-marks::before { top: -1px; left: -1px; border-top-width: 2px; border-left-width: 2px; }
+.reg-marks::after  { bottom: -1px; right: -1px; border-bottom-width: 2px; border-right-width: 2px; }
+
+.ticks {
+  height: 8px;
+  background-image:
+    repeating-linear-gradient(to right, var(--color-ink) 0 1px, transparent 1px 8px),
+    repeating-linear-gradient(to right, var(--color-ink) 0 1px, transparent 1px 40px);
+  background-size: 100% 4px, 100% 8px;
+  background-repeat: no-repeat;
+  background-position: 0 0, 0 0;
+  opacity: 0.45;
+}
+.hang { display: grid; grid-template-columns: 6.25rem 1fr; column-gap: 1rem; }
+@media (max-width: 640px) { .hang { grid-template-columns: 1fr; row-gap: 0.15rem; } }
+
+/* The one primary next action of a screen */
+.next-bar {
+  background: var(--color-surface);
+  border: 1px solid var(--color-ink);
+  border-left: 5px solid var(--color-indigo);
+  border-radius: 2px;
+}
+
+/* Provenance of a piece of text: who said it and how it got here */
+.prov { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
+.prov-recorded { color: var(--color-indigo); }
+.prov-inferred { color: var(--color-ochre-text); }
+.prov-confirmed { color: var(--color-botanical); }
+
+/* ── Scrollbar ───────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: var(--color-canvas); }
+::-webkit-scrollbar-thumb { background: var(--color-line); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-muted); }
+.scrollbar-none { scrollbar-width: none; }
+.scrollbar-none::-webkit-scrollbar { display: none; }
+
+/* ── Motion: short, calm, and off when the user asks ─────────── */
+@keyframes settle {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-slide-up { animation: settle 0.2s ease-out both; }
+
+@keyframes recordPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(174, 76, 59, 0.35); }
+  50%      { box-shadow: 0 0 0 6px rgba(174, 76, 59, 0); }
+}
+.recording-pulse { animation: recordPulse 1.6s ease infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* SAUDA ledger: a narrower item column on phones so the first price column is in view */
+.ledger-scroll { --ledger-item: 8rem; }
+@media (min-width: 640px) { .ledger-scroll { --ledger-item: 11rem; } }
