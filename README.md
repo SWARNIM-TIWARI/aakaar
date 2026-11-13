@@ -25,14 +25,14 @@ AAKAAR helps a customer and a maker (carpenter, tailor, mason, upholsterer) find
 It does not decide who is right. It does not pick the cheapest quote. It does not claim a plan is agreed when only one person pressed a button. Every claim on screen says where it came from.
 
 <div align="center">
-<img src="docs/screenshots/clarify-flow.gif" alt="Walkthrough of the interface: a finding is opened, an answer is written down, a person marks it clarified, and it enters KAAM-NAKSHA only as a proposed field." width="860">
+<img src="docs/screenshots/clarify-flow.gif" alt="Walkthrough of the interface: a finding is opened, an answer is written down, a person marks it clarified and it enters KAAM-NAKSHA only as a proposed field." width="860">
 
-<sub>Eight real screenshots of the running app on its built-in synthetic demo (invented people, no real data), taken from scripted clicks and captioned. Not a mock-up.</sub>
+<sub>Eight real screenshots of the running app on its built-in synthetic demo (invented people, no real data), taken from scripted clicks and captioned.</sub>
 </div>
 
 ## The idea in one example
 
-A customer sends a photo and says *"walnut finish."* The maker's quote says *"walnut-colour laminate."* Both nod. Nothing in the quote is wrong, and nothing in the brief is wrong. The disagreement only appears at delivery.
+A customer sends a photo and says *"walnut finish."* The maker's quote says *"walnut colour laminate."* Both nod. Nothing in the quote is wrong and nothing in the brief is wrong. The disagreement only appears at delivery.
 
 | | |
 |---|---|
